@@ -22,7 +22,6 @@ public class Order {
     private int orderedQty;
     private int totalPrice;
     private Long customerId;
-//    private String customerName;
     private String state = "Created";
 //    private String branchOffice;
 
@@ -63,25 +62,27 @@ public class Order {
         Menu selectdMenu = menus.get();
 
         int price = selectdMenu.getPrice();
+        int stock = selectdMenu.getStock();
         int qty = getOrderedQty();
 
         if( selectdMenu.getStock() < qty ){
             throw new OrderException("No Available stock");
         }
 
+        selectdMenu.setStock(stock - qty);
+
         this.setBurgerId(selectdMenu.getId());
         this.setBurgerName(selectdMenu.getBurgerName());
         this.setTotalPrice(qty * price);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = null;
-
-        try {
-            json = objectMapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("JSON format exception", e);
-        }
-        System.out.println(json);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String json = null;
+//
+//        try {
+//            json = objectMapper.writeValueAsString(this);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException("JSON format exception", e);
+//        }
+//        System.out.println(json);
     }
 
     @PostPersist

@@ -4,6 +4,7 @@ package newmcdonaldapp;
 public class DeliveryStart extends AbstractEvent {
 
     private Long id;
+    private Long orderId;
 
     public Long getId() {
         return id;
@@ -11,5 +12,13 @@ public class DeliveryStart extends AbstractEvent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 }
