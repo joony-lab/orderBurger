@@ -1,0 +1,17 @@
+newmcdonaldapp\DeliveryStart.class
+newmcdonaldapp\AbstractEvent.class
+newmcdonaldapp\MenuRepository.class
+newmcdonaldapp\MenuViewHandler.class
+newmcdonaldapp\OrderBurgerApplication.class
+newmcdonaldapp\OrderRepository.class
+newmcdonaldapp\external\PayHistory.class
+newmcdonaldapp\OrderController.class
+newmcdonaldapp\Ordered.class
+newmcdonaldapp\Menu.class
+newmcdonaldapp\OrderCanceled.class
+newmcdonaldapp\Order.class
+newmcdonaldapp\AbstractEvent$1.class
+newmcdonaldapp\PolicyHandler.class
+newmcdonaldapp\config\kafka\KafkaProcessor.class
+newmcdonaldapp\CookStarted.class
+newmcdonaldapp\external\PayHistoryService.class
