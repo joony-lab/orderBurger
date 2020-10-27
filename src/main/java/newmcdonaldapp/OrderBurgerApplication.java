@@ -14,5 +14,19 @@ public class OrderBurgerApplication {
     protected static ApplicationContext applicationContext;
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(OrderBurgerApplication.class, args);
+
+        MenuRepository menuRepository = applicationContext.getBean(MenuRepository.class);
+
+        String[] menus = {"MacMorning","ShrimpBurger", "BigMac"};
+
+        int i = 1;
+        for(String h : menus){
+            Menu menu = new Menu();
+
+            menu.setName(h);
+            menu.setPrice(i*2000);
+            menu.setStock(1000);
+
+        }
     }
 }
