@@ -52,24 +52,6 @@ public class Order {
 //        OrderBurgerApplication.applicationContext.getBean(newmcdonaldapp.external.PayHistoryService.class)
 //            .payRequest(payHistory);
 
-        if(burgerName == null){
-            throw new RuntimeException();
-        }
-
-        MenuRepository menuRepo = OrderBurgerApplication.applicationContext.getBean(MenuRepository.class);
-        Optional<Menu> menus = menuRepo.findByBurgerName(burgerName);
-        Menu selectdMenu = menus.get();
-
-        int price = selectdMenu.getPrice();
-        int qty = getOrderedQty();
-
-        if( selectdMenu.getStock() < qty ){
-            throw new OrderException("No Available stock");
-        }
-
-        //this.setTotalQty(qty*price);
-        this.setBurgerName(selectdMenu.getName());
-        this.setTotalPrice(qty * price);
     }
 
     @PostPersist
