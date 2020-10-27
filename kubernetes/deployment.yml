@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orderBurger
+  name: orderburger
   labels:
-    app: orderBurger
+    app: orderburger
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orderBurger
+      app: orderburger
   template:
     metadata:
       labels:
-        app: orderBurger
+        app: orderburger
     spec:
       containers:
-        - name: orderBurger
-          image: username/orderBurger:latest
+        - name: orderburger
+          image: username/orderburger:latest
           ports:
             - containerPort: 8080
           readinessProbe:
