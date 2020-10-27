@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @SpringBootApplication
-@EnableBinding(KafkaProcessor.class)
+//@EnableBinding(KafkaProcessor.class)
 @EnableFeignClients
 public class OrderBurgerApplication {
     protected static ApplicationContext applicationContext;
@@ -23,9 +23,12 @@ public class OrderBurgerApplication {
         for(String h : menus){
             Menu menu = new Menu();
 
-            menu.setName(h);
+            menu.setBurgerName(h);
             menu.setPrice(i*2000);
             menu.setStock(1000);
+            i++;
+
+            menuRepository.save(menu);
 
         }
     }

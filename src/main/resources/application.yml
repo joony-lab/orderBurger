@@ -9,27 +9,27 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: localhost:9092
-        streams:
-          binder:
-            configuration:
-              default:
-                key:
-                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                value:
-                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-      bindings:
-        event-in:
-          group: orderBurger
-          destination: newmcdonaldapp
-          contentType: application/json
-        event-out:
-          destination: newmcdonaldapp
-          contentType: application/json
+#  cloud:
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: localhost:9092
+#        streams:
+#          binder:
+#            configuration:
+#              default:
+#                key:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                value:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#      bindings:
+#        event-in:
+#          group: orderBurger
+#          destination: newmcdonaldapp
+#          contentType: application/json
+#        event-out:
+#          destination: newmcdonaldapp
+#          contentType: application/json
 
 logging:
   level:
@@ -37,6 +37,10 @@ logging:
     org.springframework.cloud: debug
 server:
   port: 8081
+
+api:
+  url:
+    pay: http://localhost:8083
 ---
 
 spring:

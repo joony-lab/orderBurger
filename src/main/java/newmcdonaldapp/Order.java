@@ -2,6 +2,8 @@ package newmcdonaldapp;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationContext;
 
@@ -13,16 +15,16 @@ import java.util.Optional;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long burgerId;
     private String burgerName;
     private int orderedQty;
     private int totalPrice;
     private Long customerId;
-    private String customerName;
+//    private String customerName;
     private String state = "Created";
-    private String branchOffice;
+//    private String branchOffice;
 
 
     @PrePersist
@@ -52,6 +54,34 @@ public class Order {
 //        OrderBurgerApplication.applicationContext.getBean(newmcdonaldapp.external.PayHistoryService.class)
 //            .payRequest(payHistory);
 
+        if(burgerName == null){
+            throw new RuntimeException();
+        }
+
+        MenuRepository menuRepo = OrderBurgerApplication.applicationContext.getBean(MenuRepository.class);
+        Optional<Menu> menus = menuRepo.findByBurgerName(burgerName);
+        Menu selectdMenu = menus.get();
+
+        int price = selectdMenu.getPrice();
+        int qty = getOrderedQty();
+
+        if( selectdMenu.getStock() < qty ){
+            throw new OrderException("No Available stock");
+        }
+
+        this.setBurgerId(selectdMenu.getId());
+        this.setBurgerName(selectdMenu.getBurgerName());
+        this.setTotalPrice(qty * price);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = null;
+
+        try {
+            json = objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("JSON format exception", e);
+        }
+        System.out.println(json);
     }
 
     @PostPersist
@@ -114,21 +144,21 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getBranchOffice() {
-        return branchOffice;
-    }
-
-    public void setBranchOffice(String branchOffice) {
-        this.branchOffice = branchOffice;
-    }
+//    public String getCustomerName() {
+//        return customerName;
+//    }
+//
+//    public void setCustomerName(String customerName) {
+//        this.customerName = customerName;
+//    }
+//
+//    public String getBranchOffice() {
+//        return branchOffice;
+//    }
+//
+//    public void setBranchOffice(String branchOffice) {
+//        this.branchOffice = branchOffice;
+//    }
 
     public String getState() {
         return state;

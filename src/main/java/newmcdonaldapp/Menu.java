@@ -8,9 +8,9 @@ import java.util.List;
 public class Menu {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    String name;
+    String burgerName;
     int price;
     int stock;
 
@@ -22,12 +22,12 @@ public class Menu {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBurgerName() {
+        return burgerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBurgerName(String burgerName) {
+        this.burgerName = burgerName;
     }
 
     public int getPrice() {

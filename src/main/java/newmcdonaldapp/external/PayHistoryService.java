@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name="pay", url="http://pay:8080")
+@FeignClient(name="pay", url="${api.url.pay}")
 public interface PayHistoryService {
 
-    @RequestMapping(method= RequestMethod.GET, path="/payHistories")
+    @RequestMapping(method= RequestMethod.POST, value = "/payHistories", consumes = "application/json")
     public void payRequest(@RequestBody PayHistory payHistory);
 
-    void payCancel(PayHistory payHistory);
+    @RequestMapping(method= RequestMethod.GET, path="/payHistories")
+    public void payCancel(PayHistory payHistory);
 }
