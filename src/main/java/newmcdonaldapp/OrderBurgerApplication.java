@@ -19,14 +19,15 @@ public class OrderBurgerApplication {
 
         String[] menus = {"MacMorning","ShrimpBurger", "BigMac"};
 
-        int i = 1;
+
+        int k = 1;
         for(String h : menus){
             Menu menu = new Menu();
 
             menu.setBurgerName(h);
-            menu.setPrice(i*2000);
+            menu.setPrice(k*2000);
             menu.setStock(1000);
-            i++;
+            k++;
 
             menuRepository.save(menu);
 

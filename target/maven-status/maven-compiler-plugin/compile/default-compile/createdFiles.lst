@@ -1,4 +1,5 @@
 newmcdonaldapp\DeliveryStart.class
+newmcdonaldapp\OrderException.class
 newmcdonaldapp\AbstractEvent.class
 newmcdonaldapp\MenuRepository.class
 newmcdonaldapp\MenuViewHandler.class
